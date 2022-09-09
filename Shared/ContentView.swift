@@ -8,9 +8,26 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State var clickOrder = ""
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        VStack {
+            Text("Current Click Order")
+            Text(clickOrder)
+                .font(.caption)
+                .padding()
+            HStack {
+                ForEach((1...4), id: \.self) { num in
+                    Button(action: {
+                        clickOrder += "\(num)"
+                    }, label: {
+                        Text("\(num)")
+                            .padding()
+                            .font(.title)
+                    })
+                    
+                }
+            }
+        }
     }
 }
 

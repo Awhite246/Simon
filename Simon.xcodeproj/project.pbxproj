@@ -7,10 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E3C77D9B28CA3C9C00BB55EF /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C77D9A28CA3C9C00BB55EF /* Tests_iOS.swift */; };
-		E3C77D9D28CA3C9C00BB55EF /* Tests_iOSLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C77D9C28CA3C9C00BB55EF /* Tests_iOSLaunchTests.swift */; };
-		E3C77DA728CA3C9C00BB55EF /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C77DA628CA3C9C00BB55EF /* Tests_macOS.swift */; };
-		E3C77DA928CA3C9C00BB55EF /* Tests_macOSLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C77DA828CA3C9C00BB55EF /* Tests_macOSLaunchTests.swift */; };
 		E3C77DAA28CA3C9C00BB55EF /* SimonApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C77D8228CA3C9A00BB55EF /* SimonApp.swift */; };
 		E3C77DAB28CA3C9C00BB55EF /* SimonApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C77D8228CA3C9A00BB55EF /* SimonApp.swift */; };
 		E3C77DAC28CA3C9C00BB55EF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C77D8328CA3C9A00BB55EF /* ContentView.swift */; };
@@ -42,13 +38,8 @@
 		E3C77D8428CA3C9C00BB55EF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E3C77D8928CA3C9C00BB55EF /* Simon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Simon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3C77D8F28CA3C9C00BB55EF /* Simon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Simon.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		E3C77D9128CA3C9C00BB55EF /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
 		E3C77D9628CA3C9C00BB55EF /* Tests iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		E3C77D9A28CA3C9C00BB55EF /* Tests_iOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_iOS.swift; sourceTree = "<group>"; };
-		E3C77D9C28CA3C9C00BB55EF /* Tests_iOSLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_iOSLaunchTests.swift; sourceTree = "<group>"; };
 		E3C77DA228CA3C9C00BB55EF /* Tests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		E3C77DA628CA3C9C00BB55EF /* Tests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOS.swift; sourceTree = "<group>"; };
-		E3C77DA828CA3C9C00BB55EF /* Tests_macOSLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOSLaunchTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,9 +78,6 @@
 			isa = PBXGroup;
 			children = (
 				E3C77D8128CA3C9A00BB55EF /* Shared */,
-				E3C77D9028CA3C9C00BB55EF /* macOS */,
-				E3C77D9928CA3C9C00BB55EF /* Tests iOS */,
-				E3C77DA528CA3C9C00BB55EF /* Tests macOS */,
 				E3C77D8A28CA3C9C00BB55EF /* Products */,
 			);
 			sourceTree = "<group>";
@@ -113,32 +101,6 @@
 				E3C77DA228CA3C9C00BB55EF /* Tests macOS.xctest */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		E3C77D9028CA3C9C00BB55EF /* macOS */ = {
-			isa = PBXGroup;
-			children = (
-				E3C77D9128CA3C9C00BB55EF /* macOS.entitlements */,
-			);
-			path = macOS;
-			sourceTree = "<group>";
-		};
-		E3C77D9928CA3C9C00BB55EF /* Tests iOS */ = {
-			isa = PBXGroup;
-			children = (
-				E3C77D9A28CA3C9C00BB55EF /* Tests_iOS.swift */,
-				E3C77D9C28CA3C9C00BB55EF /* Tests_iOSLaunchTests.swift */,
-			);
-			path = "Tests iOS";
-			sourceTree = "<group>";
-		};
-		E3C77DA528CA3C9C00BB55EF /* Tests macOS */ = {
-			isa = PBXGroup;
-			children = (
-				E3C77DA628CA3C9C00BB55EF /* Tests_macOS.swift */,
-				E3C77DA828CA3C9C00BB55EF /* Tests_macOSLaunchTests.swift */,
-			);
-			path = "Tests macOS";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -317,8 +279,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E3C77D9D28CA3C9C00BB55EF /* Tests_iOSLaunchTests.swift in Sources */,
-				E3C77D9B28CA3C9C00BB55EF /* Tests_iOS.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -326,8 +286,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E3C77DA928CA3C9C00BB55EF /* Tests_macOSLaunchTests.swift in Sources */,
-				E3C77DA728CA3C9C00BB55EF /* Tests_macOS.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
