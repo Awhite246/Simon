@@ -11,10 +11,11 @@ struct ContentView: View {
     @State private var colorDisplay = [ColorDisplay(color: .green), ColorDisplay(color: .red), ColorDisplay(color: .yellow), ColorDisplay(color: .blue)]
     @State var correct = true
     var body: some View {
+        
         VStack {
             Text("Simon")
                 .font(.custom("Big Boy", size: 72))
-            Text("Dylan as here")
+            Text("Dylan Smells bad amd is ugly")
         }
         .preferredColorScheme(.dark)
         .ignoresSafeArea()
