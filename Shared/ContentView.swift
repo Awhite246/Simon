@@ -15,7 +15,7 @@ struct ContentView: View {
         VStack {
             Text("Simon")
                 .font(.custom("Big Boy", size: 72))
-            Text("Dylan Smells bad amd is ugly")
+            Text("Alistair is a dum dum")
         }
         .preferredColorScheme(.dark)
         .ignoresSafeArea()
