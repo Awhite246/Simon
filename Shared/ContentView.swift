@@ -16,12 +16,22 @@ struct ContentView: View {
             ForEach(0..<4) { num in
                 colorDisplay[num]
                     .opacity(flash[num] ? 1 : 0.4)
+                    .onTapGesture {
+                        flashColorDisplay(index: num)
+                    }
             }
         })
         .preferredColorScheme(.dark)
         .ignoresSafeArea()
     }
     
+    func flashColorDisplay(index: Int) {
+        flash[index].toggle()
+        withAnimation(.easeInOut(duration: 0.5)) {
+            flash[index].toggle()
+            
+        }
+    }
 }
 
 struct ColorDisplay: View {
