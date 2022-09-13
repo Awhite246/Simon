@@ -11,12 +11,11 @@ struct ContentView: View {
     @State private var colorDisplay = [ColorDisplay(color: .green), ColorDisplay(color: .red), ColorDisplay(color: .yellow), ColorDisplay(color: .blue)]
     @State var correct = true
     var body: some View {
-        
-        VStack {
-            Text("Simon")
-                .font(.custom("Big Boy", size: 72))
-            Text("Alistair is a dum dum")
-        }
+        LazyVGrid(columns: [GridItem(.fixed(225)), GridItem(.fixed(225))], content: {
+            ForEach(0..<4) { num in
+                colorDisplay[num]
+            }
+        })
         .preferredColorScheme(.dark)
         .ignoresSafeArea()
     }
@@ -28,7 +27,7 @@ struct ColorDisplay: View {
     var body: some View {
         RoundedRectangle(cornerRadius: 25.0)
             .fill(color)
-            .frame(width: 100, height: 100, alignment: .center)
+            .frame(width: 200, height: 450, alignment: .center)
             .padding()
     }
 }
