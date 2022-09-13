@@ -10,10 +10,12 @@ import SwiftUI
 struct ContentView: View {
     @State var correct = true
     @State private var colorDisplay = [ColorDisplay(color: .green), ColorDisplay(color: .red), ColorDisplay(color: .yellow), ColorDisplay(color: .blue)]
+    @State private var flash = [false, false, false, false]
     var body: some View {
         LazyVGrid(columns: [GridItem(.fixed(225)), GridItem(.fixed(225))], content: {
             ForEach(0..<4) { num in
                 colorDisplay[num]
+                    .opacity(flash[num] ? 1 : 0.4)
             }
         })
         .preferredColorScheme(.dark)
