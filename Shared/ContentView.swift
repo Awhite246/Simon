@@ -11,6 +11,9 @@ struct ContentView: View {
     @State var correct = true
     @State private var colorDisplay = [ColorDisplay(color: .green), ColorDisplay(color: .red), ColorDisplay(color: .yellow), ColorDisplay(color: .blue)]
     @State private var flash = [false, false, false, false]
+    @State private var timer = Timer.publish(every: 0.5, on: .main, in: .common).autoconnect()
+    @State private var index = 0
+    @State private var sequence = [Int]()
     var body: some View {
         LazyVGrid(columns: [GridItem(.fixed(225)), GridItem(.fixed(225))], content: {
             ForEach(0..<4) { num in
@@ -22,6 +25,14 @@ struct ContentView: View {
             }
         })
         .preferredColorScheme(.dark)
+        .onReceive(timer) { _ in
+            if index < sequence.count {
+                flashColorDisplay(index: sequence[index])
+                index += 1
+            } else {
+                sequence.append(Int.random(in: 0...3))
+            }
+        }
         .ignoresSafeArea()
     }
     
