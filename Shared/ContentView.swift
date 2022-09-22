@@ -39,8 +39,8 @@ struct ColorDisplay: View {
     var body: some View {
         RoundedRectangle(cornerRadius: 25.0)
             .fill(color)
-            .frame(width: 200, height: 450, alignment: .center)
-            .padding()
+            .frame(width: 200, height: 430, alignment: .center)
+            .padding(10)
     }
 }
 
