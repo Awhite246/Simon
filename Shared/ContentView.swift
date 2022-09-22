@@ -14,34 +14,51 @@ struct ContentView: View {
     @State private var timer = Timer.publish(every: 0.5, on: .main, in: .common).autoconnect()
     @State private var index = 0
     @State private var sequence = [Int]()
-    @State private var score = 0
-    @State private var playingGame = false
+    @State private var userIndex = 0
+    @State private var playing = false
+    @State private var text = "Start"
     var body: some View {
-        LazyVGrid(columns: [GridItem(.fixed(225)), GridItem(.fixed(225))], content: {
-            ForEach(0..<4) { num in
-                colorDisplay[num]
-                    .opacity(flash[num] ? 1 : 0.4)
-                    .onTapGesture {
-                        flashColorDisplay(index: num)
-                        score = score + 1
-                        playingGame = true
-                    }
+        ZStack {
+            Button {
+                text = ""
+            } label: {
+                Text(text)
             }
-        })
-        .preferredColorScheme(.dark)
-        .onReceive(timer) { _ in
-            if playingGame == true {
-                if index < sequence.count {
-                    flashColorDisplay(index: sequence[index])
-                    index += 1
+
+
+            LazyVGrid(columns: [GridItem(.fixed(225)), GridItem(.fixed(225))], content: {
+                ForEach(0..<4) { num in
+                    colorDisplay[num]
+                        .opacity(flash[num] ? 1 : 0.4)
+                        .onTapGesture {
+                            if playing {
+                                flashColorDisplay(index: num)
+                                userIndex += 1
+                            }
+                        }
+                }
+            })
+            .preferredColorScheme(.dark)
+            .onReceive(timer) { _ in
+                if playing {
+                    if userIndex >= sequence.count - 1{
+                        playing = false
+                        userIndex = 0
+                    }
                 } else {
-                    sequence.append(Int.random(in: 0...3))
+                    if index < sequence.count {
+                        flashColorDisplay(index: sequence[index])
+                        index += 1
+                    } else {
+                        index = 0
+                        sequence.append(Int.random(in: 0...3))
+                        playing = true
+                    }
                 }
             }
+            .ignoresSafeArea()
         }
-        .ignoresSafeArea()
     }
-    
     func flashColorDisplay(index: Int) {
         flash[index].toggle()
         withAnimation(.easeInOut(duration: 0.5)) {
