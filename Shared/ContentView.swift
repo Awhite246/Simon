@@ -14,6 +14,8 @@ struct ContentView: View {
     @State private var timer = Timer.publish(every: 0.5, on: .main, in: .common).autoconnect()
     @State private var index = 0
     @State private var sequence = [Int]()
+    @State private var score = 0
+    @State private var playingGame = false
     var body: some View {
         LazyVGrid(columns: [GridItem(.fixed(225)), GridItem(.fixed(225))], content: {
             ForEach(0..<4) { num in
@@ -21,16 +23,20 @@ struct ContentView: View {
                     .opacity(flash[num] ? 1 : 0.4)
                     .onTapGesture {
                         flashColorDisplay(index: num)
+                        score = score + 1
+                        playingGame = true
                     }
             }
         })
         .preferredColorScheme(.dark)
         .onReceive(timer) { _ in
-            if index < sequence.count {
-                flashColorDisplay(index: sequence[index])
-                index += 1
-            } else {
-                sequence.append(Int.random(in: 0...3))
+            if playingGame == true {
+                if index < sequence.count {
+                    flashColorDisplay(index: sequence[index])
+                    index += 1
+                } else {
+                    sequence.append(Int.random(in: 0...3))
+                }
             }
         }
         .ignoresSafeArea()
