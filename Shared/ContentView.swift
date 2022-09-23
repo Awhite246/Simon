@@ -17,37 +17,42 @@ struct ContentView: View {
     @State private var userIndex = 0
     @State private var playing = false
     @State private var text = "Start"
-    @State private var begin = false
+    @State private var startGame = false
     var body: some View {
         ZStack {
+            //lets player start the timer and start playing
             Button {
                 text = ""
-                begin = true
+                startGame.toggle()
             } label: {
                 Text(text)
             }
-
-
+            
+            //shows the buttons on the screen
             LazyVGrid(columns: [GridItem(.fixed(225)), GridItem(.fixed(225))], content: {
                 ForEach(0..<4) { num in
                     colorDisplay[num]
                         .opacity(flash[num] ? 1 : 0.4)
+                    //increments player taps when button clicked
                         .onTapGesture {
                             if playing {
                                 flashColorDisplay(index: num)
                                 userIndex += 1
+                                //checks how many clicks left
+                                if userIndex >= sequence.count - 1{
+                                    playing = false
+                                    userIndex = 0
+                                }
+                                //checks if correct click
                             }
                         }
                 }
             })
             .preferredColorScheme(.dark)
             .onReceive(timer) { _ in
-                if begin == true {
-                    if playing {
-                        if userIndex >= sequence.count - 1{
-                            playing = false
-                            userIndex = 0
-                        }
+                if startGame { //checks if game has started
+                    if playing { //checks if player is allowed to click
+                        
                     } else {
                         if index < sequence.count {
                             flashColorDisplay(index: sequence[index])
