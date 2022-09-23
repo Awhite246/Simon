@@ -18,12 +18,16 @@ struct ContentView: View {
     @State private var playing = false
     @State private var text = "Start"
     @State private var startGame = false
+    @State private var score = 0
     var body: some View {
         ZStack {
             //lets player start the timer and start playing
             Button {
                 text = ""
                 startGame.toggle()
+                index = 1
+                sequence.append(Int.random(in: 0...3))
+                flashColorDisplay(index: sequence.last!)
             } label: {
                 Text(text)
             }
@@ -44,6 +48,10 @@ struct ContentView: View {
                                     userIndex = 0
                                 }
                                 //checks if correct click
+                                if num != sequence[userIndex] {
+                                    startGame = false
+                                    playing = false
+                                }
                             }
                         }
                 }
