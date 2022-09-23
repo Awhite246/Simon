@@ -17,10 +17,12 @@ struct ContentView: View {
     @State private var userIndex = 0
     @State private var playing = false
     @State private var text = "Start"
+    @State private var begin = false
     var body: some View {
         ZStack {
             Button {
                 text = ""
+                begin = true
             } label: {
                 Text(text)
             }
@@ -40,19 +42,21 @@ struct ContentView: View {
             })
             .preferredColorScheme(.dark)
             .onReceive(timer) { _ in
-                if playing {
-                    if userIndex >= sequence.count - 1{
-                        playing = false
-                        userIndex = 0
-                    }
-                } else {
-                    if index < sequence.count {
-                        flashColorDisplay(index: sequence[index])
-                        index += 1
+                if begin == true {
+                    if playing {
+                        if userIndex >= sequence.count - 1{
+                            playing = false
+                            userIndex = 0
+                        }
                     } else {
-                        index = 0
-                        sequence.append(Int.random(in: 0...3))
-                        playing = true
+                        if index < sequence.count {
+                            flashColorDisplay(index: sequence[index])
+                            index += 1
+                        } else {
+                            index = 0
+                            sequence.append(Int.random(in: 0...3))
+                            playing = true
+                        }
                     }
                 }
             }
