@@ -11,14 +11,13 @@ struct ContentView: View {
     @State var correct = true
     @State private var colorDisplay = [ColorDisplay(color: .green), ColorDisplay(color: .red), ColorDisplay(color: .yellow), ColorDisplay(color: .blue)]
     @State private var flash = [false, false, false, false]
-    @State private var timer = Timer.publish(every: 0.5, on: .main, in: .common).autoconnect()
+    @State private var timer = Timer.publish(every: 0.20, on: .main, in: .common).autoconnect()
     @State private var index = 0
     @State private var sequence = [Int]()
     @State private var userIndex = 0
     @State private var playing = true
     @State private var text = "Start"
     @State private var startGame = false
-    @State private var score = 0
     @State private var wait = 0
     var body: some View {
         ZStack {
@@ -38,6 +37,8 @@ struct ContentView: View {
                 Text("Sequence count: \(sequence.count), User index: \(userIndex)")
                 Text("index: \(index), playing: \(playing ? "true" : "false")")
                 Text("startgame : \(startGame ? "true" : "false")")
+                Text("wait: \(wait)")
+                Text("score: \(sequence.count)")
             }
             //shows the buttons on the screen
             LazyVGrid(columns: [GridItem(.fixed(225)), GridItem(.fixed(225))], content: {
@@ -67,29 +68,29 @@ struct ContentView: View {
             .preferredColorScheme(.dark)
             .onReceive(timer) { _ in
                 if startGame { //checks if game has started
-                    if wait > 2 {
-                        if playing { //checks if player is allowed to click
-                            
+                    if playing { //checks if player is allowed to click
+                        
+                    } else if wait == calcDelay(time: sequence.count) {
+                        if index < sequence.count{
+                            flashColorDisplay(index: sequence[index])
+                            index += 1
                         } else {
-                            if index < sequence.count{
-                                flashColorDisplay(index: sequence[index])
-                                index += 1
-                            } else {
-                                index = 0
-                                sequence.append(Int.random(in: 0...3))
-                                flashColorDisplay(index: sequence.last!)
-                                wait = 0
-                                playing = true
-                            }
+                            index = 0
+                            sequence.append(Int.random(in: 0...3))
+                            flashColorDisplay(index: sequence.last!)
+                            wait = 0
+                            playing = true
                         }
+                        wait = 0
                     } else {
                         wait += 1
                     }
                 }
             }
-            .ignoresSafeArea()
         }
+        .ignoresSafeArea()
     }
+    
     func flashColorDisplay(index: Int) {
         flash[index].toggle()
         withAnimation(.easeInOut(duration: 0.5)) {
@@ -97,8 +98,17 @@ struct ContentView: View {
             
         }
     }
+    
+    func calcDelay(time : Int) -> Int {
+        if time <= 5 {
+            return 3
+        } else if time <= 10 {
+            return 2
+        } else {
+            return 1
+        }
+    }
 }
-
 struct ColorDisplay: View {
     let color: Color
     var body: some View {
