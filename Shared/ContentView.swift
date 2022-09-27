@@ -19,6 +19,7 @@ struct ContentView: View {
     @State private var text = "Start"
     @State private var startGame = false
     @State private var score = 0
+    @State private var wait = 0
     var body: some View {
         ZStack {
             VStack {
@@ -66,18 +67,23 @@ struct ContentView: View {
             .preferredColorScheme(.dark)
             .onReceive(timer) { _ in
                 if startGame { //checks if game has started
-                    if playing { //checks if player is allowed to click
-                        
-                    } else {
-                        if index < sequence.count{
-                            flashColorDisplay(index: sequence[index])
-                            index += 1
+                    if wait > 2 {
+                        if playing { //checks if player is allowed to click
+                            
                         } else {
-                            index = 0
-                            sequence.append(Int.random(in: 0...3))
-                            flashColorDisplay(index: sequence.last!)
-                            playing = true
+                            if index < sequence.count{
+                                flashColorDisplay(index: sequence[index])
+                                index += 1
+                            } else {
+                                index = 0
+                                sequence.append(Int.random(in: 0...3))
+                                flashColorDisplay(index: sequence.last!)
+                                wait = 0
+                                playing = true
+                            }
                         }
+                    } else {
+                        wait += 1
                     }
                 }
             }
