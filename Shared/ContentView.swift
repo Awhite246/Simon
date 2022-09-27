@@ -15,23 +15,29 @@ struct ContentView: View {
     @State private var index = 0
     @State private var sequence = [Int]()
     @State private var userIndex = 0
-    @State private var playing = false
+    @State private var playing = true
     @State private var text = "Start"
     @State private var startGame = false
     @State private var score = 0
     var body: some View {
         ZStack {
-            //lets player start the timer and start playing
-            Button {
-                text = ""
-                startGame.toggle()
-                index = 1
-                sequence.append(Int.random(in: 0...3))
-                flashColorDisplay(index: sequence.last!)
-            } label: {
-                Text(text)
+            VStack {
+                //lets player start the timer and start playing
+                Button {
+                    text = ""
+                    index = 0
+                    sequence.append(Int.random(in: 0...3))
+                    flashColorDisplay(index: sequence[index])
+                    startGame = true
+                } label: {
+                    Text(text)
+                }
+                //Debugging
+                Text("Debugging")
+                Text("Sequence count: \(sequence.count), User index: \(userIndex)")
+                Text("index: \(index), playing: \(playing ? "true" : "false")")
+                Text("startgame : \(startGame ? "true" : "false")")
             }
-            
             //shows the buttons on the screen
             LazyVGrid(columns: [GridItem(.fixed(225)), GridItem(.fixed(225))], content: {
                 ForEach(0..<4) { num in
@@ -39,17 +45,18 @@ struct ContentView: View {
                         .opacity(flash[num] ? 1 : 0.4)
                     //increments player taps when button clicked
                         .onTapGesture {
-                            if playing {
+                            if startGame && playing {
                                 flashColorDisplay(index: num)
-                                userIndex += 1
-                                //checks how many clicks left
-                                if userIndex >= sequence.count - 1{
-                                    playing = false
-                                    userIndex = 0
-                                }
                                 //checks if correct click
                                 if num != sequence[userIndex] {
+                                    //restart game
                                     startGame = false
+                                    playing = false
+                                }
+                                userIndex += 1
+                                //checks how many clicks left
+                                if userIndex >= sequence.count{
+                                    userIndex = 0
                                     playing = false
                                 }
                             }
@@ -62,12 +69,13 @@ struct ContentView: View {
                     if playing { //checks if player is allowed to click
                         
                     } else {
-                        if index < sequence.count {
+                        if index < sequence.count{
                             flashColorDisplay(index: sequence[index])
                             index += 1
                         } else {
                             index = 0
                             sequence.append(Int.random(in: 0...3))
+                            flashColorDisplay(index: sequence.last!)
                             playing = true
                         }
                     }
