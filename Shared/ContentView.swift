@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State var correct = true
     @State private var colorDisplay = [ColorDisplay(color: .green), ColorDisplay(color: .red), ColorDisplay(color: .yellow), ColorDisplay(color: .blue)]
     @State private var flash = [false, false, false, false]
     @State private var timer = Timer.publish(every: 0.20, on: .main, in: .common).autoconnect()
@@ -16,22 +15,11 @@ struct ContentView: View {
     @State private var sequence = [Int]()
     @State private var userIndex = 0
     @State private var playing = true
-    @State private var text = "Start"
     @State private var startGame = false
     @State private var wait = 0
     var body: some View {
         ZStack {
             VStack {
-                //lets player start the timer and start playing
-                //                Button {
-                //                    text = ""
-                //                    index = 0
-                //                    sequence.append(Int.random(in: 0...3))
-                //                    flashColorDisplay(index: sequence[index])
-                //                    startGame = true
-                //                } label: {
-                //                    Text(text)
-                //                }
                 //Debugging
                 Text("Debugging")
                 Text("Sequence count: \(sequence.count), User index: \(userIndex)")
@@ -75,11 +63,7 @@ struct ContentView: View {
                             flashColorDisplay(index: sequence[index])
                             index += 1
                         } else {
-                            index = 0
-                            sequence.append(Int.random(in: 0...3))
-                            flashColorDisplay(index: sequence.last!)
-                            wait = 0
-                            playing = true
+                            switchToPlayer()
                         }
                         wait = 0
                     } else {
@@ -116,14 +100,7 @@ struct ContentView: View {
                         .font(.system(size: 50))
                 }
                 .onTapGesture {
-                    index = 0
-                    playing = true
-                    userIndex = 0
-                    sequence.removeAll()
-                    wait = 0
-                    sequence.append(Int.random(in: 0...3))
-                    flashColorDisplay(index: sequence[index])
-                    startGame = true
+                    resetValues()
                 }
             }
         }
@@ -141,11 +118,26 @@ struct ContentView: View {
     func calcDelay(time : Int) -> Int {
         if time <= 5 {
             return 3
-        } else if time <= 10 {
+        } else if time <= 15 {
             return 2
         } else {
             return 1
         }
+    }
+    
+    func resetValues() {
+        sequence.removeAll()
+        switchToPlayer()
+        startGame = true
+    }
+    
+    func switchToPlayer() {
+        userIndex = 0
+        index = 0
+        wait = 0
+        sequence.append(Int.random(in: 0...3))
+        flashColorDisplay(index: sequence.last!)
+        playing = true
     }
 }
 struct ColorDisplay: View {
