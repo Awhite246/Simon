@@ -23,15 +23,15 @@ struct ContentView: View {
         ZStack {
             VStack {
                 //lets player start the timer and start playing
-                Button {
-                    text = ""
-                    index = 0
-                    sequence.append(Int.random(in: 0...3))
-                    flashColorDisplay(index: sequence[index])
-                    startGame = true
-                } label: {
-                    Text(text)
-                }
+                //                Button {
+                //                    text = ""
+                //                    index = 0
+                //                    sequence.append(Int.random(in: 0...3))
+                //                    flashColorDisplay(index: sequence[index])
+                //                    startGame = true
+                //                } label: {
+                //                    Text(text)
+                //                }
                 //Debugging
                 Text("Debugging")
                 Text("Sequence count: \(sequence.count), User index: \(userIndex)")
@@ -41,7 +41,7 @@ struct ContentView: View {
                 Text("score: \(sequence.count)")
             }
             //shows the buttons on the screen
-            LazyVGrid(columns: [GridItem(.fixed(225)), GridItem(.fixed(225))], content: {
+            LazyVGrid(columns: [GridItem(.fixed(212)), GridItem(.fixed(212))], content: {
                 ForEach(0..<4) { num in
                     colorDisplay[num]
                         .opacity(flash[num] ? 1 : 0.4)
@@ -87,6 +87,45 @@ struct ContentView: View {
                     }
                 }
             }
+            //Start Button
+            if !startGame {
+                ZStack {
+                    Circle()
+                        .fill(Color.black)
+                        .frame(width: 250)
+                    Circle()
+                        .trim(from: 0, to: 0.25)
+                        .fill(Color.blue)
+                        .frame(width: 230)
+                    Circle()
+                        .trim(from: 0.25, to: 0.5)
+                        .fill(Color.yellow)
+                        .frame(width: 230)
+                    Circle()
+                        .trim(from: 0.5, to: 0.75)
+                        .fill(Color.green)
+                        .frame(width: 230)
+                    Circle()
+                        .trim(from: 0.75, to: 1)
+                        .fill(Color.red)
+                        .frame(width: 230)
+                    Circle()
+                        .fill(Color.black)
+                        .frame(width: 210)
+                    Text("Start")
+                        .font(.system(size: 50))
+                }
+                .onTapGesture {
+                    index = 0
+                    playing = true
+                    userIndex = 0
+                    sequence.removeAll()
+                    wait = 0
+                    sequence.append(Int.random(in: 0...3))
+                    flashColorDisplay(index: sequence[index])
+                    startGame = true
+                }
+            }
         }
         .ignoresSafeArea()
     }
@@ -114,8 +153,8 @@ struct ColorDisplay: View {
     var body: some View {
         RoundedRectangle(cornerRadius: 25.0)
             .fill(color)
-            .frame(width: 200, height: 430, alignment: .center)
-            .padding(10)
+            .frame(width: 210, height: 430, alignment: .center)
+            .padding(0.5)
     }
 }
 
