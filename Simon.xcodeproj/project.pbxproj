@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		97D7333C28E3430F00FA84AB /* Sounds in Resources */ = {isa = PBXBuildFile; fileRef = 97D7333B28E3430F00FA84AB /* Sounds */; };
-		97D7333D28E3430F00FA84AB /* Sounds in Resources */ = {isa = PBXBuildFile; fileRef = 97D7333B28E3430F00FA84AB /* Sounds */; };
+		97D7333F28E5E3DB00FA84AB /* Sounds in Resources */ = {isa = PBXBuildFile; fileRef = 97D7333E28E5E3DB00FA84AB /* Sounds */; };
+		97D7334028E5E3DB00FA84AB /* Sounds in Resources */ = {isa = PBXBuildFile; fileRef = 97D7333E28E5E3DB00FA84AB /* Sounds */; };
 		E3C77DAA28CA3C9C00BB55EF /* SimonApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C77D8228CA3C9A00BB55EF /* SimonApp.swift */; };
 		E3C77DAB28CA3C9C00BB55EF /* SimonApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C77D8228CA3C9A00BB55EF /* SimonApp.swift */; };
 		E3C77DAC28CA3C9C00BB55EF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C77D8328CA3C9A00BB55EF /* ContentView.swift */; };
@@ -35,7 +35,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		97D7333B28E3430F00FA84AB /* Sounds */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Sounds; path = ../../../../Downloads/Simon/Sounds; sourceTree = "<group>"; };
+		97D7333E28E5E3DB00FA84AB /* Sounds */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Sounds; sourceTree = "<group>"; };
 		E3C77D8228CA3C9A00BB55EF /* SimonApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimonApp.swift; sourceTree = "<group>"; };
 		E3C77D8328CA3C9A00BB55EF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		E3C77D8428CA3C9C00BB55EF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -91,7 +91,7 @@
 				E3C77D8228CA3C9A00BB55EF /* SimonApp.swift */,
 				E3C77D8328CA3C9A00BB55EF /* ContentView.swift */,
 				E3C77D8428CA3C9C00BB55EF /* Assets.xcassets */,
-				97D7333B28E3430F00FA84AB /* Sounds */,
+				97D7333E28E5E3DB00FA84AB /* Sounds */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -232,7 +232,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				97D7333C28E3430F00FA84AB /* Sounds in Resources */,
+				97D7333F28E5E3DB00FA84AB /* Sounds in Resources */,
 				E3C77DAE28CA3C9C00BB55EF /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -241,7 +241,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				97D7333D28E3430F00FA84AB /* Sounds in Resources */,
+				97D7334028E5E3DB00FA84AB /* Sounds in Resources */,
 				E3C77DAF28CA3C9C00BB55EF /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
