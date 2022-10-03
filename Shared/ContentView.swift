@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import AVFoundation
 
 struct ContentView: View {
     @State private var colorDisplay = [ColorDisplay(color: .green), ColorDisplay(color: .red), ColorDisplay(color: .yellow), ColorDisplay(color: .blue)]
@@ -16,18 +17,15 @@ struct ContentView: View {
     @State private var userIndex = 0
     @State private var playing = true
     @State private var startGame = false
+    @State private var restartGame = false
     @State private var wait = 0
+    @State private var highScore = 0
+    @State private var newHighScore = false
     var body: some View {
+        
         ZStack {
-            VStack {
-                //Debugging
-                Text("Debugging")
-                Text("Sequence count: \(sequence.count), User index: \(userIndex)")
-                Text("index: \(index), playing: \(playing ? "true" : "false")")
-                Text("startgame : \(startGame ? "true" : "false")")
-                Text("wait: \(wait)")
-                Text("score: \(sequence.count)")
-            }
+            Text(debug(isDebugging: false))
+            
             //shows the buttons on the screen
             LazyVGrid(columns: [GridItem(.fixed(212)), GridItem(.fixed(212))], content: {
                 ForEach(0..<4) { num in
@@ -36,13 +34,21 @@ struct ContentView: View {
                     //increments player taps when button clicked
                         .onTapGesture {
                             if startGame && playing {
-                                flashColorDisplay(index: num)
+                                
                                 //checks if correct click
                                 if num != sequence[userIndex] {
                                     //restart game
                                     startGame = false
                                     playing = false
+                                    restartGame = true
+                                    if highScore < sequence.count {
+                                        highScore = sequence.count
+                                        newHighScore = true
+                                    }
+                                    //stops running rest of code to save time
+                                    return
                                 }
+                                flashColorDisplay(index: num)
                                 userIndex += 1
                                 //checks how many clicks left
                                 if userIndex >= sequence.count{
@@ -71,40 +77,41 @@ struct ContentView: View {
                     }
                 }
             }
-            //Start Button
-            if !startGame {
-                ZStack {
-                    Circle()
-                        .fill(Color.black)
-                        .frame(width: 250)
-                    Circle()
-                        .trim(from: 0, to: 0.25)
-                        .fill(Color.blue)
-                        .frame(width: 230)
-                    Circle()
-                        .trim(from: 0.25, to: 0.5)
-                        .fill(Color.yellow)
-                        .frame(width: 230)
-                    Circle()
-                        .trim(from: 0.5, to: 0.75)
-                        .fill(Color.green)
-                        .frame(width: 230)
-                    Circle()
-                        .trim(from: 0.75, to: 1)
-                        .fill(Color.red)
-                        .frame(width: 230)
-                    Circle()
-                        .fill(Color.black)
-                        .frame(width: 210)
-                    Text("Start")
+            //Start / Restart Screen
+            Color.black
+                .opacity(!startGame || restartGame ? 0.75 : 0)
+            VStack {
+                Group {
+                    Text("Highscore")
+                        .font(.system(size: 25))
+                        .foregroundColor(newHighScore ? .yellow : .white)
+                    Text("\(highScore)")
                         .font(.system(size: 50))
+                        .padding(.bottom)
+                        .foregroundColor(newHighScore ? .yellow : .white)
                 }
-                .onTapGesture {
-                    resetValues()
+                if restartGame {
+                    Text("Score")
+                        .font(.system(size: 25))
+                    Text("\(sequence.count)")
+                        .padding(.bottom)
+                        .font(.system(size: 50))
+                    Button("Try Again") {
+                        resetValues()
+                    }
+                    .font(.system(size: 25))
+                }
+                if !startGame && !restartGame {
+                    Button("Play Game") {
+                        resetValues()
+                    }
+                    .font(.system(size: 25))
                 }
             }
+            .opacity(!startGame || restartGame ? 1 : 0)
         }
         .ignoresSafeArea()
+        
     }
     
     func flashColorDisplay(index: Int) {
@@ -129,6 +136,8 @@ struct ContentView: View {
         sequence.removeAll()
         switchToPlayer()
         startGame = true
+        restartGame = false
+        newHighScore = false
     }
     
     func switchToPlayer() {
@@ -139,9 +148,22 @@ struct ContentView: View {
         flashColorDisplay(index: sequence.last!)
         playing = true
     }
+    
+    func debug(isDebugging : Bool) -> String {
+        if isDebugging {
+            return "Debugging" +
+            "\nSequence count: \(sequence.count), User index: \(userIndex)" +
+            "\nindex: \(index), playing: \(playing ? "true" : "false")" +
+            "\nindex: \(index), playing: \(playing ? "true" : "false")" +
+            "\nwait: \(wait)" +
+            "\nscore: \(sequence.count)"
+        }
+        return ""
+    }
 }
 struct ColorDisplay: View {
     let color: Color
+    var sound: AVAudioPlayer?
     var body: some View {
         RoundedRectangle(cornerRadius: 25.0)
             .fill(color)
