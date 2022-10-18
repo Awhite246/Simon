@@ -9,14 +9,14 @@
 /* Begin PBXBuildFile section */
 		97D7333F28E5E3DB00FA84AB /* Sounds in Resources */ = {isa = PBXBuildFile; fileRef = 97D7333E28E5E3DB00FA84AB /* Sounds */; };
 		97D7334028E5E3DB00FA84AB /* Sounds in Resources */ = {isa = PBXBuildFile; fileRef = 97D7333E28E5E3DB00FA84AB /* Sounds */; };
-		E33A616428E5E6F600F4DFBB /* Sound.swift in Sources */ = {isa = PBXBuildFile; fileRef = E33A616328E5E6F600F4DFBB /* Sound.swift */; };
-		E33A616528E5E6F600F4DFBB /* Sound.swift in Sources */ = {isa = PBXBuildFile; fileRef = E33A616328E5E6F600F4DFBB /* Sound.swift */; };
 		E3C77DAA28CA3C9C00BB55EF /* SimonApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C77D8228CA3C9A00BB55EF /* SimonApp.swift */; };
 		E3C77DAB28CA3C9C00BB55EF /* SimonApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C77D8228CA3C9A00BB55EF /* SimonApp.swift */; };
 		E3C77DAC28CA3C9C00BB55EF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C77D8328CA3C9A00BB55EF /* ContentView.swift */; };
 		E3C77DAD28CA3C9C00BB55EF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C77D8328CA3C9A00BB55EF /* ContentView.swift */; };
 		E3C77DAE28CA3C9C00BB55EF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E3C77D8428CA3C9C00BB55EF /* Assets.xcassets */; };
 		E3C77DAF28CA3C9C00BB55EF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E3C77D8428CA3C9C00BB55EF /* Assets.xcassets */; };
+		E3F46A4E28F858480011DC4B /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F46A4D28F858480011DC4B /* AudioPlayer.swift */; };
+		E3F46A4F28F858480011DC4B /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F46A4D28F858480011DC4B /* AudioPlayer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,7 +38,6 @@
 
 /* Begin PBXFileReference section */
 		97D7333E28E5E3DB00FA84AB /* Sounds */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Sounds; sourceTree = "<group>"; };
-		E33A616328E5E6F600F4DFBB /* Sound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sound.swift; sourceTree = "<group>"; };
 		E3C77D8228CA3C9A00BB55EF /* SimonApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimonApp.swift; sourceTree = "<group>"; };
 		E3C77D8328CA3C9A00BB55EF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		E3C77D8428CA3C9C00BB55EF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -46,6 +45,7 @@
 		E3C77D8F28CA3C9C00BB55EF /* Simon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Simon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3C77D9628CA3C9C00BB55EF /* Tests iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3C77DA228CA3C9C00BB55EF /* Tests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E3F46A4D28F858480011DC4B /* AudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,7 +93,7 @@
 			children = (
 				E3C77D8228CA3C9A00BB55EF /* SimonApp.swift */,
 				E3C77D8328CA3C9A00BB55EF /* ContentView.swift */,
-				E33A616328E5E6F600F4DFBB /* Sound.swift */,
+				E3F46A4D28F858480011DC4B /* AudioPlayer.swift */,
 				E3C77D8428CA3C9C00BB55EF /* Assets.xcassets */,
 				97D7333E28E5E3DB00FA84AB /* Sounds */,
 			);
@@ -272,8 +272,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				E3C77DAC28CA3C9C00BB55EF /* ContentView.swift in Sources */,
-				E33A616428E5E6F600F4DFBB /* Sound.swift in Sources */,
 				E3C77DAA28CA3C9C00BB55EF /* SimonApp.swift in Sources */,
+				E3F46A4E28F858480011DC4B /* AudioPlayer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -282,8 +282,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				E3C77DAD28CA3C9C00BB55EF /* ContentView.swift in Sources */,
-				E33A616528E5E6F600F4DFBB /* Sound.swift in Sources */,
 				E3C77DAB28CA3C9C00BB55EF /* SimonApp.swift in Sources */,
+				E3F46A4F28F858480011DC4B /* AudioPlayer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

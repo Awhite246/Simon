@@ -21,8 +21,16 @@ struct ContentView: View {
     @State private var wait = 0
     @State private var highScore = 0
     @State private var newHighScore = false
+    //sounds
+    @ObservedObject private var sound0 = AudioPlayer(name: "0", type: "wav")
+    @ObservedObject private var sound1 = AudioPlayer(name: "1", type: "wav")
+    @ObservedObject private var sound2 = AudioPlayer(name: "2", type: "wav")
+    @ObservedObject private var sound3 = AudioPlayer(name: "3", type: "wav")
+    @ObservedObject private var soundScore = AudioPlayer(name: "HighScore", type: "wav")
+    @ObservedObject private var soundLose = AudioPlayer(name: "Lose", type: "wav")
+    @ObservedObject private var soundStart = AudioPlayer(name: "Start", type: "wav")
+    
     var body: some View {
-        
         ZStack {
             Text(debug(isDebugging: false))
             
@@ -44,12 +52,27 @@ struct ContentView: View {
                                     if highScore < sequence.count {
                                         highScore = sequence.count
                                         newHighScore = true
+                                        soundScore.start()
+                                    } else {
+                                        soundLose.start()
                                     }
                                     //stops running rest of code to save time
                                     return
                                 }
                                 flashColorDisplay(index: num)
                                 userIndex += 1
+                                switch (num) {
+                                case 0:
+                                    sound0.start()
+                                case 1:
+                                    sound1.start()
+                                case 2:
+                                    sound2.start()
+                                case 3:
+                                    sound3.start()
+                                default:
+                                    return
+                                }
                                 //checks how many clicks left
                                 if userIndex >= sequence.count{
                                     userIndex = 0
@@ -138,6 +161,7 @@ struct ContentView: View {
         startGame = true
         restartGame = false
         newHighScore = false
+        soundStart.start()
     }
     
     func switchToPlayer() {
@@ -163,7 +187,6 @@ struct ContentView: View {
 }
 struct ColorDisplay: View {
     let color: Color
-    var sound: AVAudioPlayer?
     var body: some View {
         RoundedRectangle(cornerRadius: 25.0)
             .fill(color)
