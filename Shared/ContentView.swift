@@ -21,13 +21,14 @@ struct ContentView: View {
     @State private var wait = 0
     @State private var highScore = 0
     @State private var newHighScore = false
+    @State private var highScoreFont = 25.0
     //sounds
     @ObservedObject private var sound0 = AudioPlayer(name: "0", type: "wav")
     @ObservedObject private var sound1 = AudioPlayer(name: "1", type: "wav")
     @ObservedObject private var sound2 = AudioPlayer(name: "2", type: "wav")
     @ObservedObject private var sound3 = AudioPlayer(name: "3", type: "wav")
     @ObservedObject private var soundScore = AudioPlayer(name: "HighScore", type: "wav")
-    @ObservedObject private var soundLose = AudioPlayer(name: "Lose", type: "wav", volume: 10.0)
+    @ObservedObject private var soundLose = AudioPlayer(name: "Lose", type: "wav")
     @ObservedObject private var soundStart = AudioPlayer(name: "Start", type: "wav")
     
     var body: some View {
@@ -52,6 +53,9 @@ struct ContentView: View {
                                         highScore = sequence.count
                                         newHighScore = true
                                         playSound(name: "HighScore")
+                                        withAnimation(.spring(response: 0.5, dampingFraction: 0.5, blendDuration: 2)){
+                                            highScoreFont = 72
+                                        }
                                     } else {
                                         playSound(name: "Lose")
                                     }
@@ -95,11 +99,12 @@ struct ContentView: View {
                 .opacity(!startGame || restartGame ? 0.75 : 0)
             VStack {
                 Group {
-                    Text("Highscore")
-                        .font(.system(size: 25))
+                    Text(newHighScore ? "New Highscore" : "Highscore")
+                        .font(.system(size: highScoreFont))
                         .foregroundColor(newHighScore ? .yellow : .white)
+                        .multilineTextAlignment(.center)
                     Text("\(highScore)")
-                        .font(.system(size: 50))
+                        .font(.system(size: highScoreFont * 2))
                         .padding(.bottom)
                         .foregroundColor(newHighScore ? .yellow : .white)
                 }
@@ -170,6 +175,7 @@ struct ContentView: View {
         startGame = true
         restartGame = false
         newHighScore = false
+        highScoreFont = 25.0
         playSound(name: "Start")
     }
     
