@@ -11,17 +11,17 @@ import AVFoundation
 struct ContentView: View {
     @State private var colorDisplay = [ColorDisplay(color: .green), ColorDisplay(color: .red), ColorDisplay(color: .yellow), ColorDisplay(color: .blue)]
     @State private var flash = [false, false, false, false]
-    @State private var timer = Timer.publish(every: 0.20, on: .main, in: .common).autoconnect()
     @State private var index = 0
     @State private var sequence = [Int]()
     @State private var userIndex = 0
-    @State private var playing = true
+    @State private var playing = false
     @State private var startGame = false
     @State private var restartGame = false
     @State private var wait = 0
     @State private var highScore = 0
     @State private var newHighScore = false
     @State private var highScoreFont = 25.0
+    let timer = Timer.publish(every: 0.20, on: .main, in: .common).autoconnect()
     //sounds
     @ObservedObject private var sound0 = AudioPlayer(name: "0", type: "wav")
     @ObservedObject private var sound1 = AudioPlayer(name: "1", type: "wav")
@@ -65,7 +65,6 @@ struct ContentView: View {
                                 }
                                 flashColorDisplay(index: num)
                                 userIndex += 1
-                                playSound(name: "\(num)")
                                 //checks how many clicks left
                                 if userIndex >= sequence.count{
                                     userIndex = 0
@@ -80,10 +79,9 @@ struct ContentView: View {
                 if startGame { //checks if game has started
                     if playing { //checks if player is allowed to click
                         
-                    } else if wait == calcDelay(time: sequence.count) {
+                    } else if wait == calcDelay(time: sequence.count, first: index == 0) {
                         if index < sequence.count{
                             flashColorDisplay(index: sequence[index])
-                            playSound(name: "\(sequence[index])")
                             index += 1
                         } else {
                             switchToPlayer()
@@ -136,18 +134,23 @@ struct ContentView: View {
         flash[index].toggle()
         withAnimation(.easeInOut(duration: 0.5)) {
             flash[index].toggle()
-            
+            playSound(name: "\(index)")
         }
     }
     
-    func calcDelay(time : Int) -> Int {
-        if time <= 5 {
-            return 3
-        } else if time <= 15 {
-            return 2
-        } else {
-            return 1
+    func calcDelay(time : Int, first : Bool) -> Int {
+        var out = 0
+        if first {
+            out += 1
         }
+        if time <= 5 {
+            out += 4
+        } else if time <= 15 {
+            out += 2
+        } else {
+            out += 1
+        }
+        return out
     }
     func playSound(name : String) {
         switch (name) {
@@ -171,21 +174,23 @@ struct ContentView: View {
     }
     func resetValues() {
         sequence.removeAll()
-        switchToPlayer()
         startGame = true
         restartGame = false
         newHighScore = false
         highScoreFont = 25.0
+        userIndex = 0
+        index = 0
+        wait = 0
+        playing = false
         playSound(name: "Start")
     }
     
     func switchToPlayer() {
+        sequence.append(Int.random(in: 0...3))
+        flashColorDisplay(index: sequence.last!)
         userIndex = 0
         index = 0
         wait = 0
-        sequence.append(Int.random(in: 0...3))
-        flashColorDisplay(index: sequence.last!)
-        playSound(name: "\(sequence.last!)")
         playing = true
     }
     
