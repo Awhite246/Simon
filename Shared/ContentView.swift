@@ -9,20 +9,29 @@ import SwiftUI
 import AVFoundation
 
 struct ContentView: View {
+    //sequence and sequence position tracking variables
     @State private var colorDisplay = [ColorDisplay(color: .green), ColorDisplay(color: .red), ColorDisplay(color: .yellow), ColorDisplay(color: .blue)]
     @State private var flash = [false, false, false, false]
     @State private var index = 0
     @State private var sequence = [Int]()
     @State private var userIndex = 0
+    
+    //play state tracking variables
     @State private var playing = false
     @State private var startGame = false
     @State private var restartGame = false
+    
     @State private var wait = 0
+    
+    //highscore tracking variables
     @State private var highScore = 0
     @State private var newHighScore = false
+    
+    //animation varaiables
     @State private var highScoreFont = 25.0
     @State private var rainbowColor = 0
     let timer = Timer.publish(every: 0.20, on: .main, in: .common).autoconnect()
+    
     //sounds
     @ObservedObject private var sound0 = AudioPlayer(name: "0", type: "wav")
     @ObservedObject private var sound1 = AudioPlayer(name: "1", type: "wav")
@@ -44,16 +53,17 @@ struct ContentView: View {
                     //increments player taps when button clicked
                         .onTapGesture {
                             if startGame && playing {
-                                
                                 //checks if correct click
                                 if num != sequence[userIndex] {
                                     //restart game
                                     startGame = false
                                     playing = false
+                                    //checks if new highscore
                                     if highScore < sequence.count {
                                         highScore = sequence.count
                                         newHighScore = true
                                         playSound(name: "HighScore")
+                                        //boncy animation when new highscore
                                         withAnimation(.spring(response: 0.5, dampingFraction: 0.5, blendDuration: 2)){
                                             highScoreFont = 72
                                         }
@@ -80,18 +90,22 @@ struct ContentView: View {
                 if startGame { //checks if game has started
                     if playing { //checks if player is allowed to click
                         
-                    } else if wait == calcDelay(time: sequence.count, first: index == 0) {
+                    } else if wait == calcDelay(time: sequence.count, first: index == 0) { //wait delayed time for user expereince
                         if index < sequence.count{
+                            //fashes the colors in the sequence
                             flashColorDisplay(index: sequence[index])
                             index += 1
                         } else {
+                            //switches to allowing player to tap
                             switchToPlayer()
                         }
                         wait = 0
                     } else {
+                        //updating wait time
                         wait += 1
                     }
                 }
+                //rainbow highscore animation
                 rainbowColor += 1
             }
             //Start / Restart Screen
@@ -99,6 +113,7 @@ struct ContentView: View {
                 .opacity(!startGame || restartGame ? 0.75 : 0)
             VStack {
                 Group {
+                    //win lose screen
                     Text(newHighScore ? "New Highscore" : "Highscore")
                         .font(.system(size: highScoreFont))
                         .foregroundColor(newHighScore ? calcRainbow(num: rainbowColor) : .white)
@@ -108,6 +123,7 @@ struct ContentView: View {
                         .padding(.bottom)
                         .foregroundColor(newHighScore ? calcRainbow(num: rainbowColor + 2) : .white)
                 }
+                //start game again buttons
                 if restartGame {
                     Text("Score")
                         .font(.system(size: 25))
@@ -126,12 +142,13 @@ struct ContentView: View {
                     .font(.system(size: 25))
                 }
             }
+            //hides screen when playing
             .opacity(!startGame || restartGame ? 1 : 0)
         }
         .ignoresSafeArea()
         
     }
-    
+    //flashes colors and plays soiund
     func flashColorDisplay(index: Int) {
         flash[index].toggle()
         withAnimation(.easeInOut(duration: 0.5)) {
@@ -139,7 +156,7 @@ struct ContentView: View {
             playSound(name: "\(index)")
         }
     }
-    
+    //calculates delay time between each flash
     func calcDelay(time : Int, first : Bool) -> Int {
         var out = 0
         if first {
@@ -154,6 +171,7 @@ struct ContentView: View {
         }
         return out
     }
+    //plays specified sound
     func playSound(name : String) {
         switch (name) {
         case "0":
@@ -174,6 +192,7 @@ struct ContentView: View {
             return
         }
     }
+    //resets all variables to default values to restart game
     func resetValues() {
         sequence.removeAll()
         startGame = true
@@ -186,7 +205,7 @@ struct ContentView: View {
         playing = false
         playSound(name: "Start")
     }
-    
+    //sets all variables to let player tap
     func switchToPlayer() {
         sequence.append(Int.random(in: 0...3))
         flashColorDisplay(index: sequence.last!)
@@ -195,7 +214,7 @@ struct ContentView: View {
         wait = 0
         playing = true
     }
-    
+    //displays all variables for debugging
     func debug(isDebugging : Bool) -> String {
         if isDebugging {
             return "Debugging" +
@@ -207,7 +226,7 @@ struct ContentView: View {
         }
         return ""
     }
-    
+    //calculates which color to flash
     func calcRainbow(num : Int) -> Color {
         switch (num % 4) {
         case 0: return Color.yellow
@@ -218,6 +237,7 @@ struct ContentView: View {
         }
     }
 }
+//Generic colored button
 struct ColorDisplay: View {
     let color: Color
     var body: some View {
