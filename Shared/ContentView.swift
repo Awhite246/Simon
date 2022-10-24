@@ -30,7 +30,9 @@ struct ContentView: View {
     //animation varaiables
     @State private var highScoreFont = 25.0
     @State private var rainbowColor = 0
-    let timer = Timer.publish(every: 0.20, on: .main, in: .common).autoconnect()
+    @State private var endScreenOpacity = 0.8
+    @State private var colorCircle = 0
+    let timer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
     
     //sounds
     @ObservedObject private var sound0 = AudioPlayer(name: "0", type: "wav")
@@ -56,6 +58,9 @@ struct ContentView: View {
                                 //checks if correct click
                                 if num != sequence[userIndex] {
                                     //restart game
+                                    withAnimation(.easeOut(duration: 0.25)){
+                                        endScreenOpacity = 0.8
+                                    }
                                     startGame = false
                                     playing = false
                                     //checks if new highscore
@@ -70,9 +75,9 @@ struct ContentView: View {
                                     } else {
                                         playSound(name: "Lose")
                                     }
+                                    
                                     restartGame = true
-                                    //stops running rest of code to save time
-                                    return
+                                    return //stops running rest of code to save time
                                 }
                                 flashColorDisplay(index: num)
                                 userIndex += 1
@@ -90,7 +95,7 @@ struct ContentView: View {
                 if startGame { //checks if game has started
                     if playing { //checks if player is allowed to click
                         
-                    } else if wait == calcDelay(time: sequence.count, first: index == 0) { //wait delayed time for user expereince
+                    } else if wait == (calcDelay(time: sequence.count, first: index == 0) * 2) { //wait delayed time for user expereince
                         if index < sequence.count{
                             //fashes the colors in the sequence
                             flashColorDisplay(index: sequence[index])
@@ -104,13 +109,38 @@ struct ContentView: View {
                         //updating wait time
                         wait += 1
                     }
+                } else {
+                    if newHighScore {
+                        //does cool color circle
+                        if wait == 1 {
+                            flashColorDisplay(index: colorCircle, sound: false)
+                            switch colorCircle {
+                                case 0: colorCircle = 1
+                                case 1: colorCircle = 3
+                                case 2: colorCircle = 0
+                                case 3: colorCircle = 2
+                                default: colorCircle = 0
+                            }
+                            wait = 0
+                        } else {
+                            wait += 1
+                        }
+                        //rainbow highscore animation
+                        rainbowColor += 1
+                    } else {
+                        //flashes random colors in background cause cool
+                        if wait == 30 {
+                            flashColorDisplay(index: Int.random(in: 0...3), sound: false)
+                            wait = 0
+                        } else {
+                            wait += 1
+                        }
+                    }
                 }
-                //rainbow highscore animation
-                rainbowColor += 1
             }
             //Start / Restart Screen
             Color.black
-                .opacity(!startGame || restartGame ? 0.75 : 0)
+                .opacity(endScreenOpacity)
             VStack {
                 Group {
                     //win lose screen
@@ -120,40 +150,36 @@ struct ContentView: View {
                         .multilineTextAlignment(.center)
                     Text("\(highScore)")
                         .font(.system(size: highScoreFont * 2))
-                        .padding(.bottom)
                         .foregroundColor(newHighScore ? calcRainbow(num: rainbowColor + 2) : .white)
+                        .padding(.bottom)
                 }
-                //start game again buttons
+                //start game again button
                 if restartGame {
                     Text("Score")
                         .font(.system(size: 25))
                     Text("\(sequence.count)")
-                        .padding(.bottom)
                         .font(.system(size: 50))
-                    Button("Try Again") {
-                        resetValues()
-                    }
-                    .font(.system(size: 25))
                 }
-                if !startGame && !restartGame {
-                    Button("Play Game") {
-                        resetValues()
-                    }
-                    .font(.system(size: 25))
+                Button((!startGame && !restartGame) ? "Play Game" : "Try Again") {
+                    resetValues()
                 }
+                .font(.system(size: 25))
+                .padding(.top)
             }
             //hides screen when playing
-            .opacity(!startGame || restartGame ? 1 : 0)
+            .opacity(endScreenOpacity)
         }
         .ignoresSafeArea()
         
     }
     //flashes colors and plays soiund
-    func flashColorDisplay(index: Int) {
+    func flashColorDisplay(index: Int, sound : Bool = true) {
         flash[index].toggle()
         withAnimation(.easeInOut(duration: 0.5)) {
             flash[index].toggle()
-            playSound(name: "\(index)")
+            if sound {
+                playSound(name: "\(index)")
+            }
         }
     }
     //calculates delay time between each flash
@@ -194,6 +220,9 @@ struct ContentView: View {
     }
     //resets all variables to default values to restart game
     func resetValues() {
+        withAnimation(.easeOut(duration: 0.25)){
+            endScreenOpacity = 0.0
+        }
         sequence.removeAll()
         startGame = true
         restartGame = false
