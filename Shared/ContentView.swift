@@ -21,6 +21,7 @@ struct ContentView: View {
     @State private var highScore = 0
     @State private var newHighScore = false
     @State private var highScoreFont = 25.0
+    @State private var rainbowColor = 0
     let timer = Timer.publish(every: 0.20, on: .main, in: .common).autoconnect()
     //sounds
     @ObservedObject private var sound0 = AudioPlayer(name: "0", type: "wav")
@@ -91,6 +92,7 @@ struct ContentView: View {
                         wait += 1
                     }
                 }
+                rainbowColor += 1
             }
             //Start / Restart Screen
             Color.black
@@ -99,12 +101,12 @@ struct ContentView: View {
                 Group {
                     Text(newHighScore ? "New Highscore" : "Highscore")
                         .font(.system(size: highScoreFont))
-                        .foregroundColor(newHighScore ? .yellow : .white)
+                        .foregroundColor(newHighScore ? calcRainbow(num: rainbowColor) : .white)
                         .multilineTextAlignment(.center)
                     Text("\(highScore)")
                         .font(.system(size: highScoreFont * 2))
                         .padding(.bottom)
-                        .foregroundColor(newHighScore ? .yellow : .white)
+                        .foregroundColor(newHighScore ? calcRainbow(num: rainbowColor + 2) : .white)
                 }
                 if restartGame {
                     Text("Score")
@@ -204,6 +206,16 @@ struct ContentView: View {
             "\nscore: \(sequence.count)"
         }
         return ""
+    }
+    
+    func calcRainbow(num : Int) -> Color {
+        switch (num % 4) {
+        case 0: return Color.yellow
+        case 1: return Color.green
+        case 2: return Color.red
+        case 3: return Color.blue
+        default: return Color.yellow
+        }
     }
 }
 struct ColorDisplay: View {
