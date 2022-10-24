@@ -7,16 +7,28 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E3C77D9B28CA3C9C00BB55EF /* Tests_iOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C77D9A28CA3C9C00BB55EF /* Tests_iOS.swift */; };
-		E3C77D9D28CA3C9C00BB55EF /* Tests_iOSLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C77D9C28CA3C9C00BB55EF /* Tests_iOSLaunchTests.swift */; };
-		E3C77DA728CA3C9C00BB55EF /* Tests_macOS.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C77DA628CA3C9C00BB55EF /* Tests_macOS.swift */; };
-		E3C77DA928CA3C9C00BB55EF /* Tests_macOSLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C77DA828CA3C9C00BB55EF /* Tests_macOSLaunchTests.swift */; };
+		E31A0DB8290043D300D43586 /* 2.wav in Resources */ = {isa = PBXBuildFile; fileRef = E31A0DB1290043D200D43586 /* 2.wav */; };
+		E31A0DB9290043D300D43586 /* 2.wav in Resources */ = {isa = PBXBuildFile; fileRef = E31A0DB1290043D200D43586 /* 2.wav */; };
+		E31A0DBA290043D300D43586 /* HighScore.wav in Resources */ = {isa = PBXBuildFile; fileRef = E31A0DB2290043D300D43586 /* HighScore.wav */; };
+		E31A0DBB290043D300D43586 /* HighScore.wav in Resources */ = {isa = PBXBuildFile; fileRef = E31A0DB2290043D300D43586 /* HighScore.wav */; };
+		E31A0DBC290043D300D43586 /* Start.wav in Resources */ = {isa = PBXBuildFile; fileRef = E31A0DB3290043D300D43586 /* Start.wav */; };
+		E31A0DBD290043D300D43586 /* Start.wav in Resources */ = {isa = PBXBuildFile; fileRef = E31A0DB3290043D300D43586 /* Start.wav */; };
+		E31A0DBE290043D300D43586 /* 0.wav in Resources */ = {isa = PBXBuildFile; fileRef = E31A0DB4290043D300D43586 /* 0.wav */; };
+		E31A0DBF290043D300D43586 /* 0.wav in Resources */ = {isa = PBXBuildFile; fileRef = E31A0DB4290043D300D43586 /* 0.wav */; };
+		E31A0DC0290043D300D43586 /* Lose.wav in Resources */ = {isa = PBXBuildFile; fileRef = E31A0DB5290043D300D43586 /* Lose.wav */; };
+		E31A0DC1290043D300D43586 /* Lose.wav in Resources */ = {isa = PBXBuildFile; fileRef = E31A0DB5290043D300D43586 /* Lose.wav */; };
+		E31A0DC2290043D300D43586 /* 3.wav in Resources */ = {isa = PBXBuildFile; fileRef = E31A0DB6290043D300D43586 /* 3.wav */; };
+		E31A0DC3290043D300D43586 /* 3.wav in Resources */ = {isa = PBXBuildFile; fileRef = E31A0DB6290043D300D43586 /* 3.wav */; };
+		E31A0DC4290043D300D43586 /* 1.wav in Resources */ = {isa = PBXBuildFile; fileRef = E31A0DB7290043D300D43586 /* 1.wav */; };
+		E31A0DC5290043D300D43586 /* 1.wav in Resources */ = {isa = PBXBuildFile; fileRef = E31A0DB7290043D300D43586 /* 1.wav */; };
 		E3C77DAA28CA3C9C00BB55EF /* SimonApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C77D8228CA3C9A00BB55EF /* SimonApp.swift */; };
 		E3C77DAB28CA3C9C00BB55EF /* SimonApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C77D8228CA3C9A00BB55EF /* SimonApp.swift */; };
 		E3C77DAC28CA3C9C00BB55EF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C77D8328CA3C9A00BB55EF /* ContentView.swift */; };
 		E3C77DAD28CA3C9C00BB55EF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3C77D8328CA3C9A00BB55EF /* ContentView.swift */; };
 		E3C77DAE28CA3C9C00BB55EF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E3C77D8428CA3C9C00BB55EF /* Assets.xcassets */; };
 		E3C77DAF28CA3C9C00BB55EF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E3C77D8428CA3C9C00BB55EF /* Assets.xcassets */; };
+		E3F46A4E28F858480011DC4B /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F46A4D28F858480011DC4B /* AudioPlayer.swift */; };
+		E3F46A4F28F858480011DC4B /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F46A4D28F858480011DC4B /* AudioPlayer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,18 +49,21 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E31A0DB1290043D200D43586 /* 2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 2.wav; sourceTree = "<group>"; };
+		E31A0DB2290043D300D43586 /* HighScore.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = HighScore.wav; sourceTree = "<group>"; };
+		E31A0DB3290043D300D43586 /* Start.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Start.wav; sourceTree = "<group>"; };
+		E31A0DB4290043D300D43586 /* 0.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 0.wav; sourceTree = "<group>"; };
+		E31A0DB5290043D300D43586 /* Lose.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Lose.wav; sourceTree = "<group>"; };
+		E31A0DB6290043D300D43586 /* 3.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 3.wav; sourceTree = "<group>"; };
+		E31A0DB7290043D300D43586 /* 1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = 1.wav; sourceTree = "<group>"; };
 		E3C77D8228CA3C9A00BB55EF /* SimonApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimonApp.swift; sourceTree = "<group>"; };
 		E3C77D8328CA3C9A00BB55EF /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		E3C77D8428CA3C9C00BB55EF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E3C77D8928CA3C9C00BB55EF /* Simon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Simon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3C77D8F28CA3C9C00BB55EF /* Simon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Simon.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		E3C77D9128CA3C9C00BB55EF /* macOS.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = macOS.entitlements; sourceTree = "<group>"; };
 		E3C77D9628CA3C9C00BB55EF /* Tests iOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests iOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		E3C77D9A28CA3C9C00BB55EF /* Tests_iOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_iOS.swift; sourceTree = "<group>"; };
-		E3C77D9C28CA3C9C00BB55EF /* Tests_iOSLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_iOSLaunchTests.swift; sourceTree = "<group>"; };
 		E3C77DA228CA3C9C00BB55EF /* Tests macOS.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Tests macOS.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		E3C77DA628CA3C9C00BB55EF /* Tests_macOS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOS.swift; sourceTree = "<group>"; };
-		E3C77DA828CA3C9C00BB55EF /* Tests_macOSLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests_macOSLaunchTests.swift; sourceTree = "<group>"; };
+		E3F46A4D28F858480011DC4B /* AudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,9 +102,6 @@
 			isa = PBXGroup;
 			children = (
 				E3C77D8128CA3C9A00BB55EF /* Shared */,
-				E3C77D9028CA3C9C00BB55EF /* macOS */,
-				E3C77D9928CA3C9C00BB55EF /* Tests iOS */,
-				E3C77DA528CA3C9C00BB55EF /* Tests macOS */,
 				E3C77D8A28CA3C9C00BB55EF /* Products */,
 			);
 			sourceTree = "<group>";
@@ -99,7 +111,15 @@
 			children = (
 				E3C77D8228CA3C9A00BB55EF /* SimonApp.swift */,
 				E3C77D8328CA3C9A00BB55EF /* ContentView.swift */,
+				E3F46A4D28F858480011DC4B /* AudioPlayer.swift */,
 				E3C77D8428CA3C9C00BB55EF /* Assets.xcassets */,
+				E31A0DB4290043D300D43586 /* 0.wav */,
+				E31A0DB7290043D300D43586 /* 1.wav */,
+				E31A0DB1290043D200D43586 /* 2.wav */,
+				E31A0DB6290043D300D43586 /* 3.wav */,
+				E31A0DB2290043D300D43586 /* HighScore.wav */,
+				E31A0DB5290043D300D43586 /* Lose.wav */,
+				E31A0DB3290043D300D43586 /* Start.wav */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -113,32 +133,6 @@
 				E3C77DA228CA3C9C00BB55EF /* Tests macOS.xctest */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		E3C77D9028CA3C9C00BB55EF /* macOS */ = {
-			isa = PBXGroup;
-			children = (
-				E3C77D9128CA3C9C00BB55EF /* macOS.entitlements */,
-			);
-			path = macOS;
-			sourceTree = "<group>";
-		};
-		E3C77D9928CA3C9C00BB55EF /* Tests iOS */ = {
-			isa = PBXGroup;
-			children = (
-				E3C77D9A28CA3C9C00BB55EF /* Tests_iOS.swift */,
-				E3C77D9C28CA3C9C00BB55EF /* Tests_iOSLaunchTests.swift */,
-			);
-			path = "Tests iOS";
-			sourceTree = "<group>";
-		};
-		E3C77DA528CA3C9C00BB55EF /* Tests macOS */ = {
-			isa = PBXGroup;
-			children = (
-				E3C77DA628CA3C9C00BB55EF /* Tests_macOS.swift */,
-				E3C77DA828CA3C9C00BB55EF /* Tests_macOSLaunchTests.swift */,
-			);
-			path = "Tests macOS";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -266,6 +260,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E31A0DC0290043D300D43586 /* Lose.wav in Resources */,
+				E31A0DBC290043D300D43586 /* Start.wav in Resources */,
+				E31A0DB8290043D300D43586 /* 2.wav in Resources */,
+				E31A0DC4290043D300D43586 /* 1.wav in Resources */,
+				E31A0DBA290043D300D43586 /* HighScore.wav in Resources */,
+				E31A0DC2290043D300D43586 /* 3.wav in Resources */,
+				E31A0DBE290043D300D43586 /* 0.wav in Resources */,
 				E3C77DAE28CA3C9C00BB55EF /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -274,6 +275,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E31A0DC1290043D300D43586 /* Lose.wav in Resources */,
+				E31A0DBD290043D300D43586 /* Start.wav in Resources */,
+				E31A0DB9290043D300D43586 /* 2.wav in Resources */,
+				E31A0DC5290043D300D43586 /* 1.wav in Resources */,
+				E31A0DBB290043D300D43586 /* HighScore.wav in Resources */,
+				E31A0DC3290043D300D43586 /* 3.wav in Resources */,
+				E31A0DBF290043D300D43586 /* 0.wav in Resources */,
 				E3C77DAF28CA3C9C00BB55EF /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -301,6 +309,7 @@
 			files = (
 				E3C77DAC28CA3C9C00BB55EF /* ContentView.swift in Sources */,
 				E3C77DAA28CA3C9C00BB55EF /* SimonApp.swift in Sources */,
+				E3F46A4E28F858480011DC4B /* AudioPlayer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -310,6 +319,7 @@
 			files = (
 				E3C77DAD28CA3C9C00BB55EF /* ContentView.swift in Sources */,
 				E3C77DAB28CA3C9C00BB55EF /* SimonApp.swift in Sources */,
+				E3F46A4F28F858480011DC4B /* AudioPlayer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -317,8 +327,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E3C77D9D28CA3C9C00BB55EF /* Tests_iOSLaunchTests.swift in Sources */,
-				E3C77D9B28CA3C9C00BB55EF /* Tests_iOS.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -326,8 +334,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E3C77DA928CA3C9C00BB55EF /* Tests_macOSLaunchTests.swift in Sources */,
-				E3C77DA728CA3C9C00BB55EF /* Tests_macOS.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
